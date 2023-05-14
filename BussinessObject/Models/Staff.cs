@@ -11,12 +11,11 @@ namespace BussinessObject.Models
     public class Staff
     {
         [Key]
-        public int staffId { get; set; }
-        public int staffName { get; set; }
-        public int staffPhone { get; set; }
-        public int staffEmail { get; set; }
-        public int staffGender { get; set; }
-        [ForeignKey("spaId")]
+        public long staffId { get; set; }
+        public string staffName { get; set; }
+        public string staffPhone { get; set; }
+        public string staffEmail { get; set; }
+        public string staffGender { get; set; }
         public Spa spa_Id { get; set; }
         [ForeignKey("accountId")]
         public Account account_Id { get; set; }

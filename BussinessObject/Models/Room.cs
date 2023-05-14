@@ -11,11 +11,10 @@ namespace BussinessObject.Models
     public class Room
     {
         [Key]
-        public int roomId { get; set; }
+        public long roomId { get; set; }
         public string roomName { get; set; }
         public string roomDescription { get; set; }
         public int roomStatus { get; set; }
-        [ForeignKey("spaId")]
         public Spa spa_Id { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
     }

@@ -11,10 +11,8 @@ namespace BussinessObject.Models
     public class Appointment_Detail
     {
         [Key]
-        public int appointmentDetailId { get; set; }
-        [ForeignKey("appointmentId")]
+        public long appointmentDetailId { get; set; }
         public Appointment appointment_Id { get; set;}
-        [ForeignKey("serviceId")]
         public Service service_Id { get; set;}
     }
 }

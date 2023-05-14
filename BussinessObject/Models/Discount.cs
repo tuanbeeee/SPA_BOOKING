@@ -11,12 +11,11 @@ namespace BussinessObject.Models
     public class Discount
     {
         [Key]
-        public int discountId { get; set; }
-        public int discountCode { get; set; }
+        public long discountId { get; set; }
+        public long discountCode { get; set; }
         public int discountType { get; set; }
-        public int discountAmount { get; set; }
+        public Double discountAmount { get; set; }
         public DateTime expireDate { get; set; }
-        [ForeignKey("serviceId")]
         public Service service_Id { get; set; }
     }
 }

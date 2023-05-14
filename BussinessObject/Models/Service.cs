@@ -10,7 +10,7 @@ namespace BussinessObject.Models
     public class Service
     {
         [Key]
-        public int serviceId { get; set; }
+        public long serviceId { get; set; }
         public string serviceName { get; set; }
         public string serviceDuration { get; set; }
         public Double servicePrice { get; set; }

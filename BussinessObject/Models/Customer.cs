@@ -11,7 +11,7 @@ namespace BussinessObject.Models
     public class Customer
     {
         [Key]
-        public int customerId { get; set; }
+        public long customerId { get; set; }
         public string customerName { get; set; }
         public string customerPhone { get; set; }
         public string customerEmail { get; set; }

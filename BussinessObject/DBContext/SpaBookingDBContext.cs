@@ -35,7 +35,7 @@ namespace BussinessObject.DBContext
                  .Build();
 
                 var optionsBuilder = new DbContextOptionsBuilder<SpaBookingDBContext>();
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 
                 return new SpaBookingDBContext(optionsBuilder.Options);
             }

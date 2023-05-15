@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BussinessObject.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace BussinessObject.DBContext
 {
@@ -22,5 +24,22 @@ namespace BussinessObject.DBContext
         public DbSet<Service> Service { get; set; }
         public DbSet<Spa> Spa { get; set; }
         public DbSet<Staff> Staff { get; set; }
+
+        public class DataContextFactory : IDesignTimeDbContextFactory<SpaBookingDBContext>
+        {
+            public SpaBookingDBContext CreateDbContext(string[] args)
+            {
+                var configuration = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+                var optionsBuilder = new DbContextOptionsBuilder<SpaBookingDBContext>();
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
+
+                return new SpaBookingDBContext(optionsBuilder.Options);
+            }
+        }
     }
+        
 }

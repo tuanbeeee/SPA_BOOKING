@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BussinessObject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
 namespace BussinessObject.DBContext
 {
-    public class SpaBookingDBContext : DbContext
+    public class SpaBookingDBContext : IdentityDbContext<Account>
     {
         public SpaBookingDBContext(DbContextOptions<SpaBookingDBContext> options) : base(options) { }
         public DbSet<Account> Account { get; set; }

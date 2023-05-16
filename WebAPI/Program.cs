@@ -15,15 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-builder.Services.AddIdentity<Account, IdentityRole>()
-    .AddEntityFrameworkStores<SpaBookingDBContext>()
-    .AddDefaultTokenProviders();
+
 
 builder.Services.AddDbContext<SpaBookingDBContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddIdentity<Account, IdentityRole>()
+    .AddEntityFrameworkStores<SpaBookingDBContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>
 {

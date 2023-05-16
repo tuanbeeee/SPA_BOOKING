@@ -1,4 +1,7 @@
 ﻿
+using AutoMapper;
+using BussinessObject.DTO.Response;
+using BussinessObject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.IRepository;
@@ -10,15 +13,17 @@ namespace WebAPI.Controllers
     public class CustomerController:Controller
     {
         private readonly ICustomerRepository _customerRepository;
-        public CustomerController(ICustomerRepository customerRepository)
+        private readonly IMapper _customerMapper;
+        public CustomerController(ICustomerRepository customerRepository,IMapper customerMapper)
         {
             _customerRepository = customerRepository;
+            _customerMapper = customerMapper;
         }
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetCustomers()
         {
-            var customers=_customerRepository.GetCustomers();
+            var customers=_customerMapper.Map<List<CustomerResponseDTO>>(_customerRepository.GetCustomers());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

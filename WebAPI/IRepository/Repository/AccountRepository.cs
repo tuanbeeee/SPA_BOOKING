@@ -28,10 +28,12 @@ namespace WebAPI.IRepository.Repository
             {
                 return string.Empty;
             }
-
+            var user = await userManager.FindByEmailAsync(model.Email);
+            var role = user.Role;
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, model.Email),
+                new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -40,7 +42,7 @@ namespace WebAPI.IRepository.Repository
             var token = new JwtSecurityToken(
                 issuer: configuration["JWT:ValidIssuer"],
                 audience: configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddMinutes(2),
+                expires: DateTime.Now.AddMinutes(1),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
                 );
@@ -53,6 +55,7 @@ namespace WebAPI.IRepository.Repository
             {
                 UserName = model.Email,
                 Email = model.Email,
+                Role = model.Role,
             };
 
             return await userManager.CreateAsync(user, model.Password);

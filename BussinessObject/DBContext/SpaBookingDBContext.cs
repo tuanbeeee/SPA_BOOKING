@@ -13,6 +13,10 @@ namespace BussinessObject.DBContext
 {
     public class SpaBookingDBContext : IdentityDbContext<Account>
     {
+        public SpaBookingDBContext()
+        {
+        }
+
         public SpaBookingDBContext(DbContextOptions<SpaBookingDBContext> options) : base(options) { }
         public DbSet<Account> Account { get; set; }
         public DbSet<Appointment> Appointment { get; set; }

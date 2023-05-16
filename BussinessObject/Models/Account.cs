@@ -11,7 +11,8 @@ namespace BussinessObject.Models
 {
     public class Account : IdentityUser
     {
-        public int status { get; set; }
+        public int Status { get; set; }
+        public string Role { get; set; }
         public Staff? staff_Id { get; set; }
         public Customer? customer_Id { get; set; }
     }

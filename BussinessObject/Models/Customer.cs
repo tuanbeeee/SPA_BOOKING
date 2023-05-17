@@ -16,7 +16,7 @@ namespace BussinessObject.Models
         public string customerPhone { get; set; }
         public string customerEmail { get; set; }
         public string customerGender { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("accountId")]
         public Account? Account { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Review> Reviews { get; set; }

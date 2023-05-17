@@ -17,7 +17,7 @@ namespace BussinessObject.Models
         public string staffEmail { get; set; }
         public string staffGender { get; set; }
         public Spa Spa { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("accountId")]
         public Account Account { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Review> Reviews { get; set; }

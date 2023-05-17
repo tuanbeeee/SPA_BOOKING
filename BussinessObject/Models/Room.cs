@@ -15,7 +15,7 @@ namespace BussinessObject.Models
         public string roomName { get; set; }
         public string roomDescription { get; set; }
         public int roomStatus { get; set; }
-        public Spa spa_Id { get; set; }
+        public Spa Spa { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
     }
 }

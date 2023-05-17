@@ -14,8 +14,8 @@ namespace BussinessObject.Models
         public long reviewId { get; set; }
         public int reviewRate { get; set; }
         public string reviewContent { get; set; }
-        public Customer customer_Id { get; set; }
-        public Staff staff_Id { get; set; }
-        public Service service_Id { get; set; }
+        public Customer? Customer { get; set; }
+        public Staff? Staff { get; set; }
+        public Service? Service { get; set; }
     }
 }

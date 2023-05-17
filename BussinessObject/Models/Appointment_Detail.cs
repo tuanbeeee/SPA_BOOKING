@@ -12,7 +12,7 @@ namespace BussinessObject.Models
     {
         [Key]
         public long appointmentDetailId { get; set; }
-        public Appointment appointment_Id { get; set;}
-        public Service service_Id { get; set;}
+        public Appointment Appointment { get; set;}
+        public Service Service { get; set;}
     }
 }

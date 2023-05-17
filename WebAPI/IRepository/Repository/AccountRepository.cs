@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Text;
 using WebAPI.Repository;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
+using BussinessObject.DBContext;
 
 namespace WebAPI.IRepository.Repository
 {
@@ -13,13 +15,21 @@ namespace WebAPI.IRepository.Repository
         private readonly UserManager<Account> userManager;
         private readonly SignInManager<Account> signInManager;
         private readonly IConfiguration configuration;
+        private readonly SpaBookingDBContext _context;
         public AccountRepository(UserManager<Account> userManager,
-            SignInManager<Account> signInManager, IConfiguration configuration) 
+            SignInManager<Account> signInManager, IConfiguration configuration, SpaBookingDBContext context) 
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.configuration = configuration;
+            this._context = context;
         }
+
+        public ICollection<Account> GetAccount()
+        {
+            return _context.Account.ToList();
+        }
+
         public async Task<string> SignInAsync(SignInModel model)
         {
             var result = await signInManager.PasswordSignInAsync

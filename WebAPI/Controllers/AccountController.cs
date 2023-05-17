@@ -1,4 +1,6 @@
-﻿using BussinessObject.Models;
+﻿using AutoMapper;
+using BussinessObject.Dto;
+using BussinessObject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Repository;
@@ -10,8 +12,10 @@ namespace WebAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountRepository accountRepository;
-        public AccountController(IAccountRepository repo) {
+        private readonly IMapper _mapper;
+        public AccountController(IAccountRepository repo, IMapper mapper) {
             accountRepository = repo;
+            _mapper = mapper;
         }
 
         [HttpPost("SignUp")]
@@ -35,6 +39,17 @@ namespace WebAPI.Controllers
                 return Unauthorized();
             }
             return Ok(result);
+        }
+        [HttpGet]
+        //[Authorize(Roles = "Customer")]
+        public IActionResult GetCustomers()
+        {
+            var customers = _mapper.Map<ICollection<AccountDto>>(accountRepository.GetAccount());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(customers);
         }
     }
 }

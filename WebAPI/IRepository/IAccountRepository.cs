@@ -7,5 +7,6 @@ namespace WebAPI.Repository
     {
         public Task<IdentityResult> SignUpAsync(SignUpModel model);
         public Task<string> SignInAsync(SignInModel model);
+        public ICollection<Account> GetAccount();
     }
 }

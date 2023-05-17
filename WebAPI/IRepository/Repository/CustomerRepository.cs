@@ -1,5 +1,6 @@
 ﻿using BussinessObject.DBContext;
 using BussinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.IRepository.Repository
 {
@@ -12,7 +13,10 @@ namespace WebAPI.IRepository.Repository
         }
         public ICollection<Customer> GetCustomers()
         {
-            return _context.Customer.ToList();
+            return _context.Customer
+                .Include(c => c.Account)
+                .Include(r => r.Reviews)
+                .ToList();
         }
     }
 }

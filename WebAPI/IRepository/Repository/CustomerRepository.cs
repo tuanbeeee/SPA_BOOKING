@@ -11,6 +11,13 @@ namespace WebAPI.IRepository.Repository
         {
             _context = context;
         }
+
+        public Customer GetCustomer(int id)
+        {
+            Customer customer = _context.Customer.SingleOrDefault(c=>c.customerId==id);
+            return customer;
+        }
+
         public ICollection<Customer> GetCustomers()
         {
             return _context.Customer

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BussinessObject.Dto;
+using BussinessObject.DTO.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.IRepository;
@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         //[Authorize(Roles = "Customer")]
         public IActionResult GetCustomers()
         {
-            var reviews = _mapper.Map<ICollection<ReviewDto>>(_reviewRepository.GetReviews());
+            var reviews = _mapper.Map<ICollection<ReviewResponseDTO>>(_reviewRepository.GetReviews());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BussinessObject.Dto;
+using BussinessObject.DTO.Response;
 using BussinessObject.Models;
 
 namespace WebAPI.Mapper
@@ -9,8 +9,8 @@ namespace WebAPI.Mapper
         public MappingProfile() 
         {
             CreateMap<Customer, CustomerDto>(); 
-            CreateMap<Account, AccountDto>();
-            CreateMap<Review, ReviewDto>();
+            CreateMap<Account, AccountResponseDTO>();
+            CreateMap<Review, ReviewResponseDTO>();
         }
     }
 }

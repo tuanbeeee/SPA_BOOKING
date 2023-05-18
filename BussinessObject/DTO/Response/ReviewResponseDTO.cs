@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinessObject.Dto
+namespace BussinessObject.DTO.Response
 {
-    public class ReviewDto
+    public class ReviewResponseDTO
     {
         public long reviewId { get; set; }
         public int reviewRate { get; set; }

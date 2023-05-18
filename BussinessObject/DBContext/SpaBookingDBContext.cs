@@ -25,7 +25,6 @@ namespace BussinessObject.DBContext
         public DbSet<Discount> Discount { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Review> Review { get; set; }
-        public DbSet<Room> Room { get; set; }
         public DbSet<Service> Service { get; set; }
         public DbSet<Spa> Spa { get; set; }
         public DbSet<Staff> Staff { get; set; }

@@ -17,6 +17,6 @@ namespace BussinessObject.Models
         public string spaEmail { get; set; }
         public string spaDescription { get; set; }
         public ICollection<Staff> Staffs { get; set;}
-        public ICollection<Room> Rooms { get; set; }
+        public ICollection<Service> Services { get; set;}
     }
 }

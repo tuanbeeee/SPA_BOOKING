@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BussinessObject.DTO.Response
 {
-    public class AccountDto
+    public class AccountResponseDTO
     {
         public string Id { get; set; }
         public string PasswordHash { get; set; }

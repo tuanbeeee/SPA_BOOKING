@@ -8,7 +8,7 @@ namespace WebAPI.Mapper
     {
         public MappingProfile() 
         {
-            CreateMap<Customer, CustomerDto>(); 
+            CreateMap<Customer, CustomerResponseDTO>(); 
             CreateMap<Account, AccountResponseDTO>();
             CreateMap<Review, ReviewResponseDTO>();
         }

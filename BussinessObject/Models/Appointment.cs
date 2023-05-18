@@ -19,7 +19,7 @@ namespace BussinessObject.Models
         public string note { get; set; }
         public Customer? Customer { get; set; }
         public Staff? Staff { get; set; }
-        public Room? Room { get; set; }
         public Payment? Payment { get; set; }
+        public ICollection<Appointment_Detail> Appointment_Details { get; set; }
     }
 }

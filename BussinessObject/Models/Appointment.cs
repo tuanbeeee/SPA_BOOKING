@@ -17,9 +17,9 @@ namespace BussinessObject.Models
         public DateTime endTime { get; set; }
         public int status { get; set; }
         public string note { get; set; }
-        public Customer? customer_Id { get; set; }
-        public Staff? staff_Id { get; set; }
-        public Room? room_Id { get; set; }
-        public Payment? payment_Id { get; set; }
+        public Customer? Customer { get; set; }
+        public Staff? Staff { get; set; }
+        public Room? Room { get; set; }
+        public Payment? Payment { get; set; }
     }
 }

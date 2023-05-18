@@ -16,6 +16,6 @@ namespace BussinessObject.Models
         public int discountType { get; set; }
         public Double discountAmount { get; set; }
         public DateTime expireDate { get; set; }
-        public Service service_Id { get; set; }
+        public Service Service { get; set; }
     }
 }

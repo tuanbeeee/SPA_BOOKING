@@ -15,6 +15,6 @@ namespace BussinessObject.Models
         public Double paymentAmount { get; set; }
         public DateTime paymentDate { get; set; }
         [ForeignKey("appointmentId")]
-        public Appointment appointment_Id { get; set; }
+        public Appointment Appointment { get; set; }
     }
 }

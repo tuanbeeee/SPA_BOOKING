@@ -1,6 +1,6 @@
 ﻿
 using AutoMapper;
-using BussinessObject.Dto;
+using BussinessObject.DTO;
 using BussinessObject.DTO.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

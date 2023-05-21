@@ -19,6 +19,12 @@ namespace WebAPI.IRepository.Repository
             return customer;
         }
 
+        public void DeleteCustomer(Customer customer)
+        {
+            _context.Remove(customer);
+            _context.SaveChanges();
+        }
+
         public Customer GetCustomer(long id)
         {
             Customer? customer = _context.Customer

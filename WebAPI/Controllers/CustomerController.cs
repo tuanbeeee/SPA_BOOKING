@@ -68,5 +68,19 @@ namespace WebAPI.Controllers
                 return Ok(responseCus);
             }
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCustomer(long id) {
+            
+            if (!_customerRepository.isExist(id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                var cus=_customerRepository.GetCustomer(id);
+               _customerRepository.DeleteCustomer(cus);
+                return Ok();
+            }
+        }
     }
 }

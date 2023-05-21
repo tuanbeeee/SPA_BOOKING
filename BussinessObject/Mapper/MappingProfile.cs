@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BussinessObject.DTO.Request;
 using BussinessObject.DTO.Response;
 using BussinessObject.Models;
 
@@ -9,6 +10,7 @@ namespace WebAPI.Mapper
         public MappingProfile() 
         {
             CreateMap<Customer, CustomerResponseDTO>(); 
+            CreateMap<CustomerRequestDTO, Customer>();
             CreateMap<Account, AccountResponseDTO>();
             CreateMap<Review, ReviewResponseDTO>();
         }

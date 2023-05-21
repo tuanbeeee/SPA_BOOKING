@@ -1,22 +1,18 @@
 ﻿using BussinessObject.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinessObject.DTO.Response
+namespace BussinessObject.DTO.Request
 {
-    public class CustomerResponseDTO
-    {
-        public long customerId { get; set; }
+    public class CustomerRequestDTO
+    {     
         public string customerName { get; set; }
         public string customerPhone { get; set; }
         public string customerEmail { get; set; }
         public string customerGender { get; set; }
-        public Account? account { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public string account_Id { get; set; }
     }
 }

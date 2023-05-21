@@ -30,6 +30,12 @@ namespace WebAPI.IRepository.Repository
             return _context.Account.ToList();
         }
 
+        public Account GetAccountsByID(string id)
+        {
+            Account? account = _context.Account.SingleOrDefault(x => x.Id == id);
+            return account;
+        }
+
         public async Task<string> SignInAsync(SignInModel model)
         {
             var result = await signInManager.PasswordSignInAsync

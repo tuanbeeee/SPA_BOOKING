@@ -5,6 +5,8 @@ namespace WebAPI.IRepository
     public interface ICustomerRepository
     {
         ICollection<Customer> GetCustomers();
-        Customer GetCustomer(int id);
+        Customer GetCustomer(long id);
+        Customer CreateCustomer(Customer customer);
+        Customer UpdateCustomer(Customer customer);
     }
 }

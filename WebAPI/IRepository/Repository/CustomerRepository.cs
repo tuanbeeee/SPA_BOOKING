@@ -36,6 +36,11 @@ namespace WebAPI.IRepository.Repository
                 .ToList();
         }
 
+        public bool isExist(long id)
+        {
+            return _context.Customer.Any(c=>c.customerId == id);
+        }
+
         public Customer UpdateCustomer(Customer customer)
         {
             _context.Update(customer);

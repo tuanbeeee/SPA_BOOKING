@@ -8,5 +8,6 @@ namespace WebAPI.IRepository
         Customer GetCustomer(long id);
         Customer CreateCustomer(Customer customer);
         Customer UpdateCustomer(Customer customer);
+        bool isExist(long id);
     }
 }

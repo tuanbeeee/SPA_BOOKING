@@ -55,8 +55,8 @@ namespace WebAPI.Controllers
         }
         [HttpPut("{id}")]
         public IActionResult UpdateCustomer(long id,CustomerRequestDTO customer) {
-            var cus = _customerRepository.GetCustomer(id);
-            if(cus == null)
+            var isExist = _customerRepository.isExist(id);
+            if(isExist == false)
             {
                 return NotFound();
             }

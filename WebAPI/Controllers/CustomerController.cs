@@ -48,8 +48,11 @@ namespace WebAPI.Controllers
         [HttpPost]
         public IActionResult CreateCustomer(CustomerRequestDTO customer)
         {
+            //map customer request into customer
             var cus=_mapper.Map<Customer>(customer);
+            //get account by id and map into customer obj
             cus.Account = _accountRepository.GetAccountsByID(customer.account_Id);
+            //insert customer and map it into customer reponse
             var responseCus=_mapper.Map<CustomerResponseDTO>(_customerRepository.CreateCustomer(cus));
             return Ok(responseCus);         
         }
@@ -62,8 +65,10 @@ namespace WebAPI.Controllers
             }
             else
             {
+                //map customer request into customer
                 var reqCus = _mapper.Map<Customer>(customer);
                 reqCus.customerId = id;
+                //update customer and map it into response customer
                 var responseCus = _mapper.Map<CustomerResponseDTO>(_customerRepository.UpdateCustomer(reqCus));
                 return Ok(responseCus);
             }

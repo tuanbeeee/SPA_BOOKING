@@ -1,12 +1,13 @@
 ﻿
+
+
+using Application.CustomerService;
+using Application.DTOs.Request;
+using Application.DTOs.Response;
 using AutoMapper;
-using BussinessObject.DTO.Request;
-using BussinessObject.DTO.Response;
-using BussinessObject.Models;
-using Microsoft.AspNetCore.Authorization;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.IRepository;
-using WebAPI.Repository;
+
 
 namespace WebAPI.Controllers
 {
@@ -14,78 +15,44 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CustomerController:Controller
     {
-        private readonly ICustomerRepository _customerRepository;
-        private readonly IAccountRepository _accountRepository;
+        private readonly ICustomerService _customerService;
+        
         private readonly IMapper _mapper;
-        public CustomerController(ICustomerRepository customerRepository,IAccountRepository accountRepository, IMapper mapper)
+        public CustomerController(ICustomerService customerService, IMapper mapper)
         {
-            _customerRepository = customerRepository;
-            _accountRepository = accountRepository;
+            _customerService = customerService;
             _mapper = mapper;
         }
         [HttpGet]
         //[Authorize(Roles = "Customer")]
-        public IActionResult GetCustomers()
+        public async Task<ActionResult<ICollection<CustomerResponseDTO>>> GetCustomers()
         {
-            var customers= _mapper.Map<ICollection<CustomerResponseDTO>>(_customerRepository.GetCustomers());
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var customers= await _customerService.GetCustomers();   
             return Ok(customers);
         }
         [HttpGet("{id}")]
         //[Authorize(Roles = "Customer")]
-        public IActionResult GetCustomer(long id)
+        public async Task<ActionResult<CustomerResponseDTO>> GetCustomer(long id)
         {
-            var customer = _mapper.Map<CustomerResponseDTO>(_customerRepository.GetCustomer(id));
-            if(customer == null)
-            {
-                return NotFound();
-            }
+            var customer = await _customerService.GetCustomer(id);          
             return Ok(customer);
         }
         [HttpPost]
-        public IActionResult CreateCustomer(CustomerRequestDTO customer)
+        public async Task<ActionResult> CreateCustomer(CustomerRequestDTO customer)
         {
-            //map customer request into customer
-            var cus=_mapper.Map<Customer>(customer);
-            //get account by id and map into customer obj
-            cus.Account = _accountRepository.GetAccountsByID(customer.account_Id);
-            //insert customer and map it into customer reponse
-            var responseCus=_mapper.Map<CustomerResponseDTO>(_customerRepository.CreateCustomer(cus));
-            return Ok(responseCus);         
+            await _customerService.Add(customer);
+            return NoContent();
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(long id,CustomerRequestDTO customer) {
-            var isExist = _customerRepository.isExist(id);
-            if(isExist == false)
-            {
-                return NotFound();
-            }
-            else
-            {
-                //map customer request into customer
-                var reqCus = _mapper.Map<Customer>(customer);
-                reqCus.customerId = id;
-                //update customer and map it into response customer
-                var responseCus = _mapper.Map<CustomerResponseDTO>(_customerRepository.UpdateCustomer(reqCus));
-                return Ok(responseCus);
-            }
+        public async Task<ActionResult> UpdateCustomer(long id,CustomerRequestDTO customer) {
+            await _customerService.Update(id, customer);
+            return NoContent();
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteCustomer(long id) {
+        public async Task<ActionResult> DeleteCustomer(long id) {
             
-            if (!_customerRepository.isExist(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                var cus=_customerRepository.GetCustomer(id);
-               _customerRepository.DeleteCustomer(cus);
-                return Ok();
-            }
+            await _customerService.Delete(id);
+            return NoContent();
         }
     }
 }

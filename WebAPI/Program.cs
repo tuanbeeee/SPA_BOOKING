@@ -1,5 +1,13 @@
-using BussinessObject.DBContext;
-using BussinessObject.Models;
+
+using Application.AccountService;
+using Application.CustomerService;
+using Domain.Interfaces;
+using Domain.IRepository;
+using Domain.Models;
+using Domain.UnitOfWork;
+using Infrastructure.DBContext;
+using Infrastructure.Repositories;
+using Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +16,6 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection.Metadata;
 using System.Text;
-using WebAPI.IRepository;
-using WebAPI.IRepository.Repository;
-using WebAPI.Repository;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,12 +40,15 @@ builder.Services.AddIdentity<Account, IdentityRole>()
     .AddEntityFrameworkStores<SpaBookingDBContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
 
 builder.Services.AddAuthentication(options =>
 {

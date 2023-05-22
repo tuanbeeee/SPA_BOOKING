@@ -1,10 +1,11 @@
-﻿
+﻿using Application.CustomerService;
+using Application.DTOs.Request;
+using Application.DTOs.Response;
 using AutoMapper;
-using BussinessObject.DTO;
-using BussinessObject.DTO.Response;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.IRepository;
+
 
 namespace WebAPI.Controllers
 {
@@ -12,23 +13,44 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CustomerController:Controller
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly ICustomerService _customerService;
+        
         private readonly IMapper _mapper;
-        public CustomerController(ICustomerRepository customerRepository, IMapper mapper)
+        public CustomerController(ICustomerService customerService, IMapper mapper)
         {
-            _customerRepository = customerRepository;
+            _customerService = customerService;
             _mapper = mapper;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
-        public IActionResult GetCustomers()
+        [Authorize(Roles = "Customer")]
+        public async Task<ActionResult<ICollection<CustomerResponseDTO>>> GetCustomers()
         {
-            var customers= _mapper.Map<ICollection<CustomerResponseDTO>>(_customerRepository.GetCustomers());
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var customers= await _customerService.GetCustomers();   
             return Ok(customers);
+        }
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Customer")]
+        public async Task<ActionResult<CustomerResponseDTO>> GetCustomer(long id)
+        {
+            var customer = await _customerService.GetCustomer(id);          
+            return Ok(customer);
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateCustomer(CustomerRequestDTO customer)
+        {
+            await _customerService.Add(customer);
+            return NoContent();
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateCustomer(long id,CustomerRequestDTO customer) {
+            await _customerService.Update(id, customer);
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCustomer(long id) {
+            
+            await _customerService.Delete(id);
+            return NoContent();
         }
     }
 }

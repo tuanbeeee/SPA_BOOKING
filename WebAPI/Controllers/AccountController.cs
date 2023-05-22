@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using BussinessObject.DTO.Response;
-using BussinessObject.Models;
+﻿using Application.AccountService;
+using AutoMapper;
+using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Repository;
 
 namespace WebAPI.Controllers
 {
@@ -11,45 +10,35 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IMapper _mapper;
-        public AccountController(IAccountRepository repo, IMapper mapper) {
-            accountRepository = repo;
-            _mapper = mapper;
+        private readonly IAccountService _accountService;
+        public AccountController(IAccountService accountService) {
+            _accountService = accountService;
         }
 
         [HttpPost("SignUp")]
-        public async Task<IActionResult> SignUp(SignUpModel signUpModel)
+        public async Task<ActionResult> SignUp(SignUpModel signUpModel)
         {
-            var result = await accountRepository.SignUpAsync(signUpModel);
+            var result = await _accountService.SignUpAsync(signUpModel);
             if (result.Succeeded)
             {
-                return Ok(result.Succeeded);
+                return Ok(result);
             }
+            else
+            {
                 return Unauthorized();
             }
+        }
 
         [HttpPost("SignIn")]
-        public async Task<IActionResult> SignIn(SignInModel signInModel) 
+        public async Task<ActionResult> SignIn(SignInModel signInModel) 
         {
-            var result = await accountRepository.SignInAsync(signInModel);
-
+            string result=await _accountService.SignInAsync(signInModel);
             if (string.IsNullOrEmpty(result))
             {
                 return Unauthorized();
             }
             return Ok(result);
         }
-        [HttpGet]
-        //[Authorize(Roles = "Customer")]
-        public IActionResult GetCustomers()
-        {
-            var customers = _mapper.Map<ICollection<AccountResponseDTO>>(accountRepository.GetAccount());
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return Ok(customers);
-        }
+       
     }
 }

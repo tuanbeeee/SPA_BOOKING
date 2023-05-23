@@ -71,14 +71,16 @@ namespace Application.CustomerService
             return _mapper.Map<ICollection<CustomerResponseDTO>>(customers);
         }
 
-        public async Task Update(long id, CustomerRequestDTO customer)
+        public async Task Update(long id, CustomerRequestDTO customerRequest)
         {
-            var customerResquest= await _customerRepository.GetAsync(id);
+            var customer= await _customerRepository.GetAsync(id);
             if (customer == null)
             {
                 throw new NotFoundException("Customer not found!");
+            }else
+            {                        
+                _customerRepository.Update(_mapper.Map(customerRequest,customer));
             }
-            _customerRepository.Update(_mapper.Map<Customer>(customerResquest));
             if(await _customerRepository.SaveChangeAsync() == false)
             {
                 throw new BadRequestException("Error when updating Customer!");

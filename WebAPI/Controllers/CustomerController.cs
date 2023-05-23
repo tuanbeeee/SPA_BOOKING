@@ -1,9 +1,7 @@
 ﻿
-
-
-using Application.CustomerService;
 using Application.DTOs.Request;
 using Application.DTOs.Response;
+using Application.Services.CustomerService;
 using AutoMapper;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +25,7 @@ namespace WebAPI.Controllers
         //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<CustomerResponseDTO>>> GetCustomers()
         {
-            var customers= await _customerService.GetCustomers();   
+            var customers= await _customerService.GetAllCustomers();   
             return Ok(customers);
         }
         [HttpGet("{id}")]

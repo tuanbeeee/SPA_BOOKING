@@ -15,7 +15,10 @@ namespace Infrastructure.Repositories
                 _context = context;
             }
 
-            
-        
+        public async Task<ICollection<Customer>> GetAllCustomers()
+        {
+            var customers = await _context.Customer.Include(C=>C.Account).ToListAsync();
+            return customers;
+        }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.CustomerService
+namespace Application.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
@@ -68,6 +68,11 @@ namespace Application.CustomerService
         public async Task<ICollection<CustomerResponseDTO>> GetCustomers()
         {
             var customers=await _customerRepository.GetAllAsync();
+            return _mapper.Map<ICollection<CustomerResponseDTO>>(customers);
+        }
+        public async Task<ICollection<CustomerResponseDTO>> GetAllCustomers()
+        {
+            var customers = await _customerRepository.GetAllCustomers();
             return _mapper.Map<ICollection<CustomerResponseDTO>>(customers);
         }
 

@@ -1,6 +1,3 @@
-
-using Application.AccountService;
-using Application.CustomerService;
 using Domain.Interfaces;
 using Domain.IRepository;
 using Domain.Models;
@@ -18,6 +15,8 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
+using Application.Service.CustomerService;
+using Application.Service.AccountService;
 
 var builder = WebApplication.CreateBuilder(args);
 

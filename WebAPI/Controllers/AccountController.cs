@@ -1,4 +1,4 @@
-﻿using Application.AccountService;
+﻿using Application.Service.AccountService;
 using AutoMapper;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;

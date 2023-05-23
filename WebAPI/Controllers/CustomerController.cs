@@ -1,6 +1,6 @@
-﻿using Application.CustomerService;
-using Application.DTOs.Request;
+﻿using Application.DTOs.Request;
 using Application.DTOs.Response;
+using Application.Service.CustomerService;
 using AutoMapper;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;

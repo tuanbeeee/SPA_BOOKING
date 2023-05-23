@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Service.CustomerService
+namespace Application.Services.CustomerService
 {
     public interface ICustomerService
     {

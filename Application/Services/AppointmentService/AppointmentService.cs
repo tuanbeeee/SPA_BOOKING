@@ -12,16 +12,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Service.AppointmentService
+namespace Application.Services.AppointmentService
 {
-    internal class AppointmentService : IAppointmentService
+    public class AppointmentService : IAppointmentService
     {
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly ICustomerRepository _customerRepository;
         private readonly IStaffRepository _staffRepository;
         private readonly IMapper _mapper;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, ICustomerRepository customerRepository, IStaffRepository staffRepository,IMapper mapper)
+        public AppointmentService(IAppointmentRepository appointmentRepository, ICustomerRepository customerRepository, IStaffRepository staffRepository, IMapper mapper)
         {
             _appointmentRepository = appointmentRepository;
             _customerRepository = customerRepository;

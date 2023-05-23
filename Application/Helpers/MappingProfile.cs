@@ -14,6 +14,7 @@ namespace Application.Mapper
             CreateMap<Account, AccountResponseDTO>();
             CreateMap<Review, ReviewResponseDTO>();
             CreateMap<Appointment, AppointmentResponseDTO>();
+            CreateMap<AppointmentRequestDTO, Appointment>();
         }
     }
 }

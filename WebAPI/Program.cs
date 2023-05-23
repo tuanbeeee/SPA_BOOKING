@@ -15,8 +15,9 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
-using Application.Service.CustomerService;
-using Application.Service.AccountService;
+using Application.Services.AccountService;
+using Application.Services.CustomerService;
+using Application.Services.AppointmentService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,9 +47,13 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+
 
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 
 builder.Services.AddAuthentication(options =>
 {

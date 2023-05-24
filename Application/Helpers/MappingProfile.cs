@@ -20,6 +20,9 @@ namespace Application.Mapper
 
             CreateMap<Staff, StaffResponseDTO>();
             CreateMap<StaffRequestDTO, Staff>();
+
+            CreateMap<Spa, SpaResponseDTO>();
+            CreateMap<SpaRequestDTO, Spa>();
         }
     }
 }

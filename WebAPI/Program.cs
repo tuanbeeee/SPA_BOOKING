@@ -19,6 +19,7 @@ using Application.Services.AccountService;
 using Application.Services.CustomerService;
 using Application.Services.AppointmentService;
 using Application.Services.StaffService;
+using Application.Services.SpaService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,7 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 builder.Services.AddTransient<IStaffService, StaffService>();
+builder.Services.AddTransient<ISpaService, SpaService>();
 
 builder.Services.AddAuthentication(options =>
 {

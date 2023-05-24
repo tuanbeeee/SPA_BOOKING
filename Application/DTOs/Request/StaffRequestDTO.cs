@@ -14,6 +14,6 @@ namespace Application.DTOs.Request
         public string staffEmail { get; set; }
         public string staffGender { get; set; }
         public long spaId { get; set; }
-        public long accountId { get; set; }
+        public string accountId { get; set; }
     }
 }

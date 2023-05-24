@@ -18,6 +18,7 @@ using Microsoft.Extensions.Options;
 using Application.Services.AccountService;
 using Application.Services.CustomerService;
 using Application.Services.AppointmentService;
+using Application.Services.StaffService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,11 +50,13 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<ISpaRepository, SpaRepository>();
 
 
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+builder.Services.AddTransient<IStaffService, StaffService>();
 
 builder.Services.AddAuthentication(options =>
 {

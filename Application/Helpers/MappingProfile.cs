@@ -11,10 +11,15 @@ namespace Application.Mapper
         {
             CreateMap<Customer, CustomerResponseDTO>(); 
             CreateMap<CustomerRequestDTO, Customer>();
+            
             CreateMap<Account, AccountResponseDTO>();
             CreateMap<Review, ReviewResponseDTO>();
+            
             CreateMap<Appointment, AppointmentResponseDTO>();
             CreateMap<AppointmentRequestDTO, Appointment>();
+
+            CreateMap<Staff, StaffResponseDTO>();
+            CreateMap<StaffRequestDTO, Staff>();
         }
     }
 }

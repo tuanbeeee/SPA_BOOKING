@@ -10,10 +10,10 @@ namespace Application.Services.StaffService
 {
     public interface IStaffService
     {
-        public Task<ICollection<CustomerResponseDTO>> GetStaffs();
-        public Task<CustomerResponseDTO> GetStaff(long Id);
-        public Task Add(CustomerRequestDTO staff);
-        public Task Update(long id, CustomerRequestDTO staff);
+        public Task<ICollection<StaffResponseDTO>> GetStaffs();
+        public Task<StaffResponseDTO> GetStaff(long Id);
+        public Task Add(StaffRequestDTO staff);
+        public Task Update(long id, StaffRequestDTO staff);
         public Task Delete(long Id);
     }
 }

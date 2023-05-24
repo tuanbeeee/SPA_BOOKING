@@ -32,6 +32,9 @@ namespace Application.Mapper
 
             CreateMap<Appointment_Detail,AppointmentResponseDTO>();
             CreateMap<AppointmentDetailResquestDTO, Appointment_Detail>();
+
+            CreateMap<Payment, PaymentResponseDTO>();
+            CreateMap<PaymentRequestDTO, Payment>();
         }
     }
 }

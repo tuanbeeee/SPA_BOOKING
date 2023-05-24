@@ -29,6 +29,9 @@ namespace Application.Mapper
 
             CreateMap<Service, ServiceResponseDTO>();
             CreateMap<ServiceRequestDTO, Service>();
+
+            CreateMap<Appointment_Detail,AppointmentResponseDTO>();
+            CreateMap<AppointmentDetailResquestDTO, Appointment_Detail>();
         }
     }
 }

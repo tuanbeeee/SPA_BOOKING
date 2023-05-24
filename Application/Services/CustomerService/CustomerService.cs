@@ -85,15 +85,11 @@ namespace Application.Services.CustomerService
             }else
             {                        
                 _customerRepository.Update(_mapper.Map(customerRequest,customer));
-            }
-            if(await _customerRepository.SaveChangeAsync() == false)
+            }                        
+            if (await _customerRepository.SaveChangeAsync() == false)
             {
-                _customerRepository.Update(_mapper.Map(customer, customerResquest));
-                if (await _customerRepository.SaveChangeAsync() == false)
-                {
-                    throw new BadRequestException("Error when updating Customer!");
-                }
-            }
+                 throw new BadRequestException("Error when updating Customer!");
+            }           
         }
     }
 }

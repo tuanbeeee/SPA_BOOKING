@@ -22,6 +22,7 @@ using Application.Services.StaffService;
 using Application.Services.SpaService;
 using Application.Services.DiscountService;
 using Application.Services.ServiceService;
+using Application.Services.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,7 @@ builder.Services.AddTransient<IStaffService, StaffService>();
 builder.Services.AddTransient<ISpaService, SpaService>();
 builder.Services.AddTransient<IDiscountService, DiscountService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<IReviewService, ReviewService>();
 
 
 

@@ -23,6 +23,9 @@ namespace Application.Mapper
 
             CreateMap<Spa, SpaResponseDTO>();
             CreateMap<SpaRequestDTO, Spa>();
+
+            CreateMap<Discount, DiscountResponseDTO>();
+            CreateMap<DiscountRequestDTO, Discount>();
         }
     }
 }

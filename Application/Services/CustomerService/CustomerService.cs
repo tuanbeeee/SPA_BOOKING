@@ -26,7 +26,6 @@ namespace Application.Services.CustomerService
         }
         public async Task Add(CustomerRequestDTO requestCustomer)
         {
-
             if (requestCustomer == null)
             {
                 throw new BadRequestException("Customer Information is invalid!");
@@ -70,6 +69,7 @@ namespace Application.Services.CustomerService
             var customers = await _customerRepository.GetAllAsync();
             return _mapper.Map<ICollection<CustomerResponseDTO>>(customers);
         }
+
         public async Task<ICollection<CustomerResponseDTO>> GetAllCustomers()
         {
             var customers = await _customerRepository.GetAllCustomers();

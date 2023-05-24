@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
 
         public async Task<ICollection<Discount>> GetAllDiscounts()
         {
-            return await _context.Discount.Include(s => s.Service).ToListAsync();
+            return await _context.Discount.Include(d => d.Service).ToListAsync();
         }
     }
 }

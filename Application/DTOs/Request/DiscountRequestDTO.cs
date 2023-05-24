@@ -13,6 +13,6 @@ namespace Application.DTOs.Request
         public int discountType { get; set; }
         public Double discountAmount { get; set; }
         public DateTime expireDate { get; set; }
-        public Service Service { get; set; }
+        public long serviceID { get; set; }
     }
 }

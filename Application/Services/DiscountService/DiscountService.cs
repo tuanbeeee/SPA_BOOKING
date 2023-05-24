@@ -15,9 +15,11 @@ namespace Application.Services.DiscountService
     public class DiscountService : IDiscountService
     {
         private readonly IDiscountRepository _discountRepository;
+        private readonly IServiceRepository _serviceRepository;
         private readonly IMapper _mapper;
-        public DiscountService(IDiscountRepository discountRepository,IMapper mapper) {
+        public DiscountService(IDiscountRepository discountRepository,IServiceRepository serviceRepository,IMapper mapper) {
             _discountRepository = discountRepository;
+            _serviceRepository = serviceRepository;
             _mapper = mapper;
         }
         public async Task Add(DiscountRequestDTO requestDiscount)
@@ -27,13 +29,12 @@ namespace Application.Services.DiscountService
                 throw new BadRequestException("Discount Information is invalid!");
             }
             var discount= _mapper.Map<Discount>(requestDiscount);
-            //map service entity here
+            discount.Service = await _serviceRepository.GetAsync(requestDiscount.serviceID);
             await _discountRepository.AddAsync(discount);
             if (await _discountRepository.SaveChangeAsync() is false)
             {
                 throw new BadRequestException("Error when adding Discount!");
             }
-
         }
 
         public async Task Delete(long Id)
@@ -46,7 +47,7 @@ namespace Application.Services.DiscountService
             _discountRepository.Delete(discount);
             if (await _discountRepository.SaveChangeAsync() is false)
             {
-                throw new NotFoundException("Error when deleting Customer!");
+                throw new NotFoundException("Error when deleting Discount!");
             }
         }
 
@@ -79,7 +80,7 @@ namespace Application.Services.DiscountService
             }
             if (await _discountRepository.SaveChangeAsync() == false)
             {
-                throw new BadRequestException("Error when updating Customer!");
+                throw new BadRequestException("Error when updating Discount!");
             }
         }
     }

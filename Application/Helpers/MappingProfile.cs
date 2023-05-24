@@ -26,6 +26,9 @@ namespace Application.Mapper
 
             CreateMap<Discount, DiscountResponseDTO>();
             CreateMap<DiscountRequestDTO, Discount>();
+
+            CreateMap<Service, ServiceResponseDTO>();
+            CreateMap<ServiceRequestDTO, Service>();
         }
     }
 }

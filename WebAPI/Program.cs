@@ -1,6 +1,3 @@
-
-using Application.AccountService;
-using Application.CustomerService;
 using Domain.Interfaces;
 using Domain.IRepository;
 using Domain.Models;
@@ -17,6 +14,12 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
+using Application.Services.AccountService;
+using Application.Services.CustomerService;
+using Application.Services.AppointmentService;
+using Application.Services.StaffService;
+using Application.Services.SpaService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,9 +49,16 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<ISpaRepository, SpaRepository>();
+
 
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+builder.Services.AddTransient<IStaffService, StaffService>();
+builder.Services.AddTransient<ISpaService, SpaService>();
 
 builder.Services.AddAuthentication(options =>
 {

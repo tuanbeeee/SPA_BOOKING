@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "BussinessObject\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{E603A820-5DE5-4D0D-BB93-1828B0DAA301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{ACFC4D48-4337-44AB-825D-7BDBC2318023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{ACFC4D48-4337-44AB-825D-7BDBC2318023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F04D62CB-B467-41AB-83BB-1CB0F58CE11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F04D62CB-B467-41AB-83BB-1CB0F58CE11D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A4D586CF-E650-466D-A73F-10DA3DCBFB32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F04D62CB-B467-41AB-83BB-1CB0F58CE11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F04D62CB-B467-41AB-83BB-1CB0F58CE11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F04D62CB-B467-41AB-83BB-1CB0F58CE11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D586CF-E650-466D-A73F-10DA3DCBFB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D586CF-E650-466D-A73F-10DA3DCBFB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D586CF-E650-466D-A73F-10DA3DCBFB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D586CF-E650-466D-A73F-10DA3DCBFB32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

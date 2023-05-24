@@ -18,7 +18,7 @@ namespace Application.Services.CustomerService
         private readonly ICustomerRepository _customerRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
-        public CustomerService(ICustomerRepository customerRepository,IAccountRepository accountRepository,IMapper mapper)
+        public CustomerService(ICustomerRepository customerRepository, IAccountRepository accountRepository, IMapper mapper)
         {
             _customerRepository = customerRepository;
             _accountRepository = accountRepository;
@@ -34,7 +34,7 @@ namespace Application.Services.CustomerService
             var customer = _mapper.Map<Customer>(requestCustomer);
             customer.Account = _accountRepository.GetAccountsByID(requestCustomer.account_Id);
             await _customerRepository.AddAsync(customer);
-            if(await _customerRepository.SaveChangeAsync() is false)
+            if (await _customerRepository.SaveChangeAsync() is false)
             {
                 throw new BadRequestException("Error when adding Customer!");
             }
@@ -47,7 +47,7 @@ namespace Application.Services.CustomerService
             {
                 throw new NotFoundException("Customer not found!");
             }
-             _customerRepository.Delete(customer);
+            _customerRepository.Delete(customer);
             if (await _customerRepository.SaveChangeAsync() is false)
             {
                 throw new NotFoundException("Error when deleting Customer!");
@@ -56,7 +56,7 @@ namespace Application.Services.CustomerService
 
         public async Task<CustomerResponseDTO> GetCustomer(long Id)
         {
-            var customer= await _customerRepository.GetAsync(Id);
+            var customer = await _customerRepository.GetAsync(Id);
             if (customer == null)
             {
                 throw new NotFoundException("Customer not found!");
@@ -67,7 +67,7 @@ namespace Application.Services.CustomerService
 
         public async Task<ICollection<CustomerResponseDTO>> GetCustomers()
         {
-            var customers=await _customerRepository.GetAllAsync();
+            var customers = await _customerRepository.GetAllAsync();
             return _mapper.Map<ICollection<CustomerResponseDTO>>(customers);
         }
         public async Task<ICollection<CustomerResponseDTO>> GetAllCustomers()
@@ -88,7 +88,11 @@ namespace Application.Services.CustomerService
             }
             if(await _customerRepository.SaveChangeAsync() == false)
             {
-                throw new BadRequestException("Error when updating Customer!");
+                _customerRepository.Update(_mapper.Map(customer, customerResquest));
+                if (await _customerRepository.SaveChangeAsync() == false)
+                {
+                    throw new BadRequestException("Error when updating Customer!");
+                }
             }
         }
     }

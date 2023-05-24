@@ -14,12 +14,9 @@ namespace WebAPI.Controllers
     public class CustomerController:Controller
     {
         private readonly ICustomerService _customerService;
-        
-        private readonly IMapper _mapper;
-        public CustomerController(ICustomerService customerService, IMapper mapper)
+        public CustomerController(ICustomerService customerService)
         {
             _customerService = customerService;
-            _mapper = mapper;
         }
         [HttpGet]
         [Authorize(Roles = "Customer")]

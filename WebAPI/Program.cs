@@ -22,6 +22,8 @@ using Application.Services.StaffService;
 using Application.Services.SpaService;
 using Application.Services.DiscountService;
 using Application.Services.ServiceService;
+using Application.Services.AppointmentDetailService;
+using Application.Services.PaymentService;
 using Application.Services.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,7 +59,8 @@ builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<ISpaRepository, SpaRepository>();
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-
+builder.Services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
@@ -66,6 +69,8 @@ builder.Services.AddTransient<IStaffService, StaffService>();
 builder.Services.AddTransient<ISpaService, SpaService>();
 builder.Services.AddTransient<IDiscountService, DiscountService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<IAppointmentDetailService, AppointmentDetailService>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IReviewService, ReviewService>();
 
 

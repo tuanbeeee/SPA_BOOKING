@@ -13,7 +13,6 @@ namespace Application.Mapper
             CreateMap<CustomerRequestDTO, Customer>();
             
             CreateMap<Account, AccountResponseDTO>();
-            CreateMap<Review, ReviewResponseDTO>();
             
             CreateMap<Appointment, AppointmentResponseDTO>();
             CreateMap<AppointmentRequestDTO, Appointment>();
@@ -29,6 +28,12 @@ namespace Application.Mapper
 
             CreateMap<Service, ServiceResponseDTO>();
             CreateMap<ServiceRequestDTO, Service>();
+
+            CreateMap<Appointment_Detail,AppointmentResponseDTO>();
+            CreateMap<AppointmentDetailResquestDTO, Appointment_Detail>();
+
+            CreateMap<Payment, PaymentResponseDTO>();
+            CreateMap<PaymentRequestDTO, Payment>();
 
             CreateMap<Review, ReviewResponseDTO>();
             CreateMap<ReviewRequestDTO, Review>();

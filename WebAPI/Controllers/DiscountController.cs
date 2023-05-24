@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         //[Authorize(Roles = "Customer")]
-        public async Task<ActionResult<ICollection<DiscountResponseDTO>>> GetDiscunts()
+        public async Task<ActionResult<ICollection<DiscountResponseDTO>>> GetDiscounts()
         {
             var discounts = await _discountService.GetAllDiscount();
             return Ok(discounts);

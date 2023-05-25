@@ -35,6 +35,9 @@ namespace Application.Mapper
 
             CreateMap<Payment, PaymentResponseDTO>();
             CreateMap<PaymentRequestDTO, Payment>();
+            
+            CreateMap<Review, ReviewResponseDTO>();
+            CreateMap<ReviewRequestDTO, Review>();
         }
     }
 }

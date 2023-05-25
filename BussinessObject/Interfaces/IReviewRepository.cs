@@ -3,7 +3,7 @@ using Domain.Models;
 
 namespace Domain.IRepository
 {
-    public interface IReviewRepository
+    public interface IReviewRepository : IGenericRepository<Review>
     {
        
     }

@@ -24,6 +24,7 @@ using Application.Services.DiscountService;
 using Application.Services.ServiceService;
 using Application.Services.AppointmentDetailService;
 using Application.Services.PaymentService;
+using Application.Services.ReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,7 +71,7 @@ builder.Services.AddTransient<IDiscountService, DiscountService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
 builder.Services.AddTransient<IAppointmentDetailService, AppointmentDetailService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
-
+builder.Services.AddTransient<IReviewService, ReviewService>();
 
 
 

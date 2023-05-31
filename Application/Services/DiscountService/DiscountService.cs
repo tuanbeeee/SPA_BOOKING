@@ -24,7 +24,7 @@ namespace Application.Services.DiscountService
         }
         public async Task Add(DiscountRequestDTO requestDiscount)
         {
-            if (requestDiscount == null)
+            if (requestDiscount is null)
             {
                 throw new BadRequestException("Discount Information is invalid!");
             }

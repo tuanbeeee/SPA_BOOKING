@@ -15,6 +15,6 @@ namespace Domain.Models
         public Double paymentAmount { get; set; }
         public DateTime paymentDate { get; set; }
         [ForeignKey("appointmentId")]
-        public Appointment Appointment { get; set; }
+        public Appointment? Appointment { get; set; }
     }
 }

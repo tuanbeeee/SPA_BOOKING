@@ -19,14 +19,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult> SignUp(SignUpModel signUpModel)
         {
             var result = await _accountService.SignUpAsync(signUpModel);
-            if (result.Succeeded)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return Unauthorized();
-            }
+                return Ok(result);   
         }
 
         [HttpPost("SignIn")]

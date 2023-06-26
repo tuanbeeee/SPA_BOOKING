@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Interfaces
+namespace Infrastructure.Repositories.Interfaces
 {
-    public interface IPaymentRepository:IGenericRepository<Payment>
+    public interface IStaffRepository : IGenericRepository<Staff>
     {
-        public Task<ICollection<Payment>> GetAllPayments();
     }
 }

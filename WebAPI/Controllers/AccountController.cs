@@ -1,6 +1,7 @@
 ﻿using Application.Services.AccountService;
 using AutoMapper;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,6 @@ namespace WebAPI.Controllers
             }
             return Ok(result);
         }
-       
+        
     }
 }

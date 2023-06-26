@@ -14,11 +14,10 @@ namespace WebAPI.Controllers
     {
         private readonly IReviewService _reviewService;
 
-        private readonly IMapper _mapper;
-        public ReviewController(IReviewService reviewService, IMapper mapper)
+ 
+        public ReviewController(IReviewService reviewService)
         {
             _reviewService = reviewService;
-            _mapper = mapper;
         }
         [HttpGet]
         //[Authorize(Roles = "Customer")]

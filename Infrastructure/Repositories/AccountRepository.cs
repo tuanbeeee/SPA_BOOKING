@@ -5,10 +5,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
-using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.Extensions.Configuration;
 using Infrastructure.DBContext;
+using Infrastructure.Repositories.Interfaces;
 
 namespace Infrastructure.Repositories
 {

@@ -1,5 +1,3 @@
-using Domain.Interfaces;
-using Domain.IRepository;
 using Domain.Models;
 using Domain.UnitOfWork;
 using Infrastructure.DBContext;
@@ -25,6 +23,7 @@ using Application.Services.ServiceService;
 using Application.Services.AppointmentDetailService;
 using Application.Services.PaymentService;
 using Application.Services.ReviewService;
+using Infrastructure.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

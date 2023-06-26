@@ -1,9 +1,9 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Domain.Interfaces
+namespace Infrastructure.Repositories.Interfaces
 {
-    public interface IAccountRepository: IGenericRepository<Account>
+    public interface IAccountRepository : IGenericRepository<Account>
     {
         public Task<IdentityResult> SignUpAsync(SignUpModel model);
         public Task<string> SignInAsync(SignInModel model);

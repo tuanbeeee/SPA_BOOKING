@@ -2,9 +2,9 @@
 using Application.DTOs.Response;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Repositories;
+using Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

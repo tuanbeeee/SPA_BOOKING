@@ -1,8 +1,6 @@
-﻿
-
-using Domain.IRepository;
-using Domain.Models;
+﻿using Domain.Models;
 using Infrastructure.DBContext;
+using Infrastructure.Repositories.Interfaces;
 
 namespace Infrastructure.Repositories
 {

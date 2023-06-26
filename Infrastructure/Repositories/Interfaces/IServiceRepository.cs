@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Interfaces
+namespace Infrastructure.Repositories.Interfaces
 {
     public interface IServiceRepository : IGenericRepository<Service>
     {

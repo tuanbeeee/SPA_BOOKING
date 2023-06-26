@@ -1,10 +1,9 @@
-﻿
-using Domain.Models;
+﻿using Domain.Models;
 
-namespace Domain.IRepository
+namespace Infrastructure.Repositories.Interfaces
 {
     public interface IReviewRepository : IGenericRepository<Review>
     {
-       
+
     }
 }

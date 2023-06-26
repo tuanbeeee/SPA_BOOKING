@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace Domain.Interfaces
+namespace Infrastructure.Repositories.Interfaces
 {
     public interface IAppointmentRepository : IGenericRepository<Appointment>
     {

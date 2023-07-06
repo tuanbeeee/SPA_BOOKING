@@ -75,7 +75,7 @@ namespace Application.Services.StaffService
             return _mapper.Map<ICollection<StaffResponseDTO>>(staffs);
         }
 
-        public async Task Update(long id, StaffRequestDTO staffResquest)
+        public async Task Update(long id, StaffRequestDTO staffRequest)
         {
             var staff = await _staffRepository.GetAsync(id);
             if (staff == null)
@@ -84,7 +84,7 @@ namespace Application.Services.StaffService
             }
             else
             {
-                _staffRepository.Update(_mapper.Map(staffResquest, staff));
+                _staffRepository.Update(_mapper.Map(staffRequest, staff));
                 if (await _staffRepository.SaveChangeAsync() == false)
                 {
                     throw new BadRequestException("Error when updating Staff!");

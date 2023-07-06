@@ -62,7 +62,7 @@ namespace Application.Services.AppointmentService
             var appointment = await _appointmentRepository.GetAsync(Id);
             if (appointment == null)
             {
-                throw new NotFoundException("Appoitment not found!");
+                throw new NotFoundException("Appointment not found!");
             }
             return _mapper.Map<AppointmentResponseDTO>(appointment);
         }

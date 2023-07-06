@@ -69,7 +69,7 @@ namespace Application.Services.ServiceService
             return _mapper.Map<ServiceResponseDTO>(service);
         }
 
-        public async Task Update(long id, ServiceRequestDTO resquestService)
+        public async Task Update(long id, ServiceRequestDTO requestService)
         {
             var service = await _serviceRepository.GetAsync(id);
             if (service == null)
@@ -78,7 +78,7 @@ namespace Application.Services.ServiceService
             }
             else
             {
-                _serviceRepository.Update(_mapper.Map(resquestService, service));
+                _serviceRepository.Update(_mapper.Map(requestService, service));
             }
             if (await _serviceRepository.SaveChangeAsync() == false)
             {

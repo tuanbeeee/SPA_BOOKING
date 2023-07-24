@@ -24,7 +24,6 @@ using Application.Services.AppointmentDetailService;
 using Application.Services.PaymentService;
 using Application.Services.ReviewService;
 using Infrastructure.Repositories.Interfaces;
-using Application.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +48,6 @@ builder.Services.AddIdentity<Account, IdentityRole>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IJwtToken, JwtToken>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -75,29 +73,6 @@ builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IReviewService, ReviewService>();
 
 
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.
-    TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.
-        GetBytes(builder.Configuration["JWT:Secret"])),
-        ClockSkew = TimeSpan.Zero
-    };
-});
 
 var app = builder.Build();
 

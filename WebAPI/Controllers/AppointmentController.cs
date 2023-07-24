@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using WebAPI.Middleware;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(AuthorizeAdminAttribute))]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;

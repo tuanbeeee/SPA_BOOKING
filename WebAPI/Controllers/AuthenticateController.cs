@@ -9,10 +9,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AuthenticateController : ControllerBase
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService) {
+        public AuthenticateController(IAccountService accountService) {
             _accountService = accountService;
         }
 
@@ -26,10 +26,10 @@ namespace WebAPI.Controllers
         [HttpPost("SignIn")]
         public async Task<ActionResult> SignIn(SignInModel signInModel) 
         {
-            string result=await _accountService.SignInAsync(signInModel);
-            if (string.IsNullOrEmpty(result))
+            var result=await _accountService.SignInAsync(signInModel);
+            if (string.IsNullOrEmpty(result.AccessToken))
             {
-                return Unauthorized();
+                return BadRequest("Invalid Email or Password !");
             }
             return Ok(result);
         }

@@ -24,6 +24,7 @@ using Application.Services.AppointmentDetailService;
 using Application.Services.PaymentService;
 using Application.Services.ReviewService;
 using Infrastructure.Repositories.Interfaces;
+using Application.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,8 +49,9 @@ builder.Services.AddIdentity<Account, IdentityRole>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddScoped<IJwtToken, JwtToken>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();

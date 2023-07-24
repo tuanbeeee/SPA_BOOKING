@@ -5,8 +5,6 @@ namespace Infrastructure.Repositories.Interfaces
 {
     public interface IAccountRepository : IGenericRepository<Account>
     {
-        public Task<IdentityResult> SignUpAsync(SignUpModel model);
-        public Task<string> SignInAsync(SignInModel model);
-        public Account GetAccountsByID(string id);
+        public Account? GetAccountsByID(string id);
     }
 }

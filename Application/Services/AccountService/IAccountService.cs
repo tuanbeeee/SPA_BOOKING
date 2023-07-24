@@ -12,7 +12,7 @@ namespace Application.Services.AccountService
     public interface IAccountService
     {
         public Task<IdentityResult> SignUpAsync(SignUpModel model);
-        public Task<string> SignInAsync(SignInModel model);
+        public Task<SignInResponseDTO> SignInAsync(SignInModel model);
         public Task<AccountResponseDTO> GetAccountsByID(string id);
     }
 }

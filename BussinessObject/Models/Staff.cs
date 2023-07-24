@@ -16,9 +16,9 @@ namespace Domain.Models
         public string staffPhone { get; set; }
         public string staffEmail { get; set; }
         public string staffGender { get; set; }
-        public Spa Spa { get; set; }
+        public Spa? Spa { get; set; }
         [ForeignKey("accountId")]
-        public Account Account { get; set; }
+        public Account? Account { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Review> Reviews { get; set; }
     }

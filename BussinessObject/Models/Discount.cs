@@ -16,6 +16,6 @@ namespace Domain.Models
         public int discountType { get; set; }
         public Double discountAmount { get; set; }
         public DateTime expireDate { get; set; }
-        public Service Service { get; set; }
+        public Service? Service { get; set; }
     }
 }

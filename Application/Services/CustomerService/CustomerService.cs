@@ -2,9 +2,8 @@
 using Application.DTOs.Response;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Interfaces;
-using Domain.IRepository;
 using Domain.Models;
+using Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,10 +81,10 @@ namespace Application.Services.CustomerService
             if (customer == null)
             {
                 throw new NotFoundException("Customer not found!");
-            }else
-            {                        
-                _customerRepository.Update(_mapper.Map(customerRequest,customer));
-            }                        
+            }
+                                 
+                 _customerRepository.Update(_mapper.Map(customerRequest,customer));
+                                   
             if (await _customerRepository.SaveChangeAsync() == false)
             {
                  throw new BadRequestException("Error when updating Customer!");

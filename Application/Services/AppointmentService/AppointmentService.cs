@@ -2,10 +2,9 @@
 using Application.DTOs.Response;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Interfaces;
-using Domain.IRepository;
 using Domain.Models;
 using Infrastructure.Repositories;
+using Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +62,7 @@ namespace Application.Services.AppointmentService
             var appointment = await _appointmentRepository.GetAsync(Id);
             if (appointment == null)
             {
-                throw new NotFoundException("Appoitment not found!");
+                throw new NotFoundException("Appointment not found!");
             }
             return _mapper.Map<AppointmentResponseDTO>(appointment);
         }

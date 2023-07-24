@@ -2,8 +2,9 @@
 using Application.DTOs.Response;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Interfaces;
 using Domain.Models;
+using Infrastructure.Repositories;
+using Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Application.Services.DiscountService
             {
                 throw new BadRequestException("Discount Information is invalid!");
             }
-            var discount= _mapper.Map<Discount>(requestDiscount);
+            var discount = _mapper.Map<Discount>(requestDiscount);
             discount.Service = await _serviceRepository.GetAsync(requestDiscount.serviceID);
             await _discountRepository.AddAsync(discount);
             if (await _discountRepository.SaveChangeAsync() is false)
@@ -39,7 +40,7 @@ namespace Application.Services.DiscountService
 
         public async Task Delete(long Id)
         {
-            var discount=await _discountRepository.GetAsync(Id);
+            var discount = await _discountRepository.GetAsync(Id);
             if (discount == null)
             {
                 throw new NotFoundException("Discount not found!");
@@ -51,7 +52,7 @@ namespace Application.Services.DiscountService
             }
         }
 
-        public async Task<ICollection<DiscountResponseDTO>> GetAllDiscount()
+        public async Task<ICollection<DiscountResponseDTO>> GetAllDiscounts()
         {
             var discounts = await _discountRepository.GetAllDiscounts();
             return _mapper.Map<ICollection<DiscountResponseDTO>>(discounts);

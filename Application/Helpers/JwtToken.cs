@@ -24,8 +24,8 @@ namespace Application.Helpers
             var tokenHandler = new JwtSecurityTokenHandler();
             var authClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, email),
-                new Claim(ClaimTypes.Role, role),
+                new Claim("email", email),
+                new Claim("role", role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

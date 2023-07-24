@@ -28,7 +28,7 @@ namespace WebAPI.Middleware
 
             if (string.IsNullOrEmpty(user?.Email) || user?.Role?.ToUpper() != "ADMIN")
             {
-                // not logged in
+                // not logged in or not ADMIN role
                 context.Result = new JsonResult(new { message = "UnAuthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
                 return;
             }

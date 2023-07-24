@@ -13,6 +13,6 @@ namespace Application.Services.AccountService
     {
         public Task<IdentityResult> SignUpAsync(SignUpModel model);
         public Task<SignInResponseDTO> SignInAsync(SignInModel model);
-        public Task<AccountResponseDTO> GetAccountsByID(string id);
+        public Task<AccountResponseDTO>? GetAccountsByEmail(string email);
     }
 }

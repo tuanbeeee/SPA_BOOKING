@@ -30,9 +30,9 @@ namespace Application.Services.AccountService
             _userManager = userManager;
             _jwtToken = jwtToken;
         }
-        public async Task<AccountResponseDTO> GetAccountsByID(string id)
+        public async Task<AccountResponseDTO>? GetAccountsByEmail(string email)
         {
-            var account = _accountRepository.GetAccountsByID(id);
+            var account =  _accountRepository.GetAccountsByEmail(email);
             if (account == null)
             {
                 throw new NotFoundException("Account not found!");
@@ -62,7 +62,10 @@ namespace Application.Services.AccountService
                 Email = model.Email,
                 Role = model.Role,
             };
-
+            if (model.ConfirmPassword != model.Password)
+            {
+                throw new BadRequestException("Confirm password not match!");
+            }
             return await _userManager.CreateAsync(user, model.Password);
         }
 

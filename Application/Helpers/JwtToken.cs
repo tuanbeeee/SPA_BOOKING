@@ -49,7 +49,9 @@ namespace Application.Helpers
             return new SignInResponseDTO
             {
                 AccessToken = tokenHandler.WriteToken(token),
-                RefreshToken = tokenHandler.WriteToken(refreshToken)
+                RefreshToken = tokenHandler.WriteToken(refreshToken),
+                Email = email,
+                Role = role,
             };
         }
         public SignInResponseDTO? VerifyToken(string token)
@@ -69,14 +71,17 @@ namespace Application.Helpers
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var id = jwtToken.Claims.FirstOrDefault(x => x.Type == "email");
+                var email = jwtToken.Claims.FirstOrDefault(x => x.Type == "email");
                 var role = jwtToken.Claims.FirstOrDefault(x => x.Type == "role");
                 return new SignInResponseDTO
                 {
                     AccessToken = token,
+                    Email = email != null ? email.Value : "",
+                    Role = role != null ? role.Value : ""
                 };
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return null;
             }
         }

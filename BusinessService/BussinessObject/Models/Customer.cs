@@ -17,7 +17,7 @@ namespace Domain.Models
         public string customerEmail { get; set; }
         public string customerGender { get; set; }
         [ForeignKey("accountId")]
-        public Account? Account { get; set; }
+        public string AccountId { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Review> Reviews { get; set; }
     }

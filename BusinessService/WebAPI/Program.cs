@@ -3,16 +3,8 @@ using Domain.UnitOfWork;
 using Infrastructure.DBContext;
 using Infrastructure.Repositories;
 using Infrastructure.UnitOfWork;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
-using System.Reflection.Metadata;
-using System.Text;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Options;
 using Application.Services.AccountService;
 using Application.Services.CustomerService;
 using Application.Services.AppointmentService;
@@ -43,15 +35,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddIdentity<Account, IdentityRole>()
-    .AddEntityFrameworkStores<SpaBookingDBContext>()
-    .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();

@@ -11,6 +11,5 @@ namespace Application.Services.AccountService
 {
     public interface IAccountService
     {
-        public Task<AccountResponseDTO>? GetAccountsByEmail(string email);
     }
 }

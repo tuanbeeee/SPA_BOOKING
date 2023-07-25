@@ -15,12 +15,10 @@ namespace Application.Services.CustomerService
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
-        public CustomerService(ICustomerRepository customerRepository, IAccountRepository accountRepository, IMapper mapper)
+        public CustomerService(ICustomerRepository customerRepository, IMapper mapper)
         {
             _customerRepository = customerRepository;
-            _accountRepository = accountRepository;
             _mapper = mapper;
         }
         public async Task Add(CustomerRequestDTO requestCustomer)
@@ -30,7 +28,7 @@ namespace Application.Services.CustomerService
                 throw new BadRequestException("Customer Information is invalid!");
             }
             var customer = _mapper.Map<Customer>(requestCustomer);
-            customer.Account = _accountRepository.GetAccountsByID(requestCustomer.account_Id);
+            //customer.Account = _accountRepository.GetAccountsByID(requestCustomer.account_Id);
             await _customerRepository.AddAsync(customer);
             if (await _customerRepository.SaveChangeAsync() is false)
             {

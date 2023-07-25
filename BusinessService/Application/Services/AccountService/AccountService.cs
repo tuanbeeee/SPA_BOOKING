@@ -15,23 +15,11 @@ namespace Application.Services.AccountService
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
 
-        public AccountService(IAccountRepository accountRepository, IMapper mapper)
+        public AccountService(IMapper mapper)
         {
-            _accountRepository = accountRepository;
             _mapper = mapper;
-        }
-        public async Task<AccountResponseDTO>? GetAccountsByEmail(string email)
-        {
-            var account =  _accountRepository.GetAccountsByEmail(email);
-            if (account == null)
-            {
-                throw new NotFoundException("Account not found!");
-            }
-            return _mapper.Map<AccountResponseDTO>(account);
-        }       
-
+        }   
     }
 }

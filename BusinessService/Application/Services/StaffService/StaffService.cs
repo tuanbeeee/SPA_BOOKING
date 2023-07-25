@@ -16,15 +16,13 @@ namespace Application.Services.StaffService
     public class StaffService : IStaffService
     {
         private readonly IStaffRepository _staffRepository;
-        private readonly IAccountRepository _accountRepository;
         private readonly ISpaRepository _spaRepository;
         private readonly IMapper _mapper;
 
-        public StaffService(IStaffRepository staffRepository, IMapper mapper, IAccountRepository accountRepository, ISpaRepository spaRepository)
+        public StaffService(IStaffRepository staffRepository, IMapper mapper, ISpaRepository spaRepository)
         {
             _staffRepository = staffRepository;
             _mapper = mapper;
-            _accountRepository = accountRepository;
             _spaRepository = spaRepository;
 
         }
@@ -36,7 +34,7 @@ namespace Application.Services.StaffService
                 throw new BadRequestException("Staff Information is invalid!");
             }
             var staff =  _mapper.Map<Staff>(staffRequest);
-            staff.Account = _accountRepository.GetAccountsByID(staffRequest.accountId);
+            //staff.Account = _accountRepository.GetAccountsByID(staffRequest.accountId);
             staff.Spa = await _spaRepository.GetAsync(staffRequest.spaId);
             await _staffRepository.AddAsync(staff);
             if (await _staffRepository.SaveChangeAsync() is false)

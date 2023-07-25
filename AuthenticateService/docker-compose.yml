@@ -26,3 +26,15 @@ services:
       - spabookingdb
     networks:
       - spabookingapis
+  webapii:
+    container_name: webapii
+    image: ${DOCKER_REGISTRY-}webapii
+    build:
+      context: ./BusinessService
+      dockerfile: WebAPI\Dockerfile
+    ports:
+      - 8080:80
+    depends_on: 
+      - spabookingdb
+    networks:
+      - spabookingapis

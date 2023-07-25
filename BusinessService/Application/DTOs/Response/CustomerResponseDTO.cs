@@ -15,7 +15,7 @@ namespace Application.DTOs.Response
         public string customerPhone { get; set; }
         public string customerEmail { get; set; }
         public string customerGender { get; set; }
-        public Account? account { get; set; }
+        public string accountId { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Review> Reviews { get; set; }
     }

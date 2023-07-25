@@ -11,14 +11,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.DBContext
 {
-    public class SpaBookingDBContext : IdentityDbContext<Account>
+    public class SpaBookingDBContext : DbContext
     {
         public SpaBookingDBContext()
         {
         }
 
         public SpaBookingDBContext(DbContextOptions<SpaBookingDBContext> options) : base(options) { }
-        public DbSet<Account> Account { get; set; }
         public DbSet<Appointment> Appointment { get; set; }
         public DbSet<Appointment_Detail> AppointmentDetail { get; set; }
         public DbSet<Customer> Customer { get; set; }

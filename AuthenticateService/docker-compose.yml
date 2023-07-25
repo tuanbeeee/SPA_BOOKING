@@ -1,0 +1,40 @@
+version: '3.4'
+
+networks:
+   spabookingapis:  
+
+services:
+  spabookingdb: 
+    container_name: spa_booking_db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 8082:1433
+    environment: 
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=ABC@123456
+    networks:
+      - spabookingapis
+  webapi:
+    container_name: webapi
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: WebAPI\Dockerfile
+    ports:
+      - 8080:80
+    depends_on: 
+      - spabookingdb
+    networks:
+      - spabookingapis
+  webapii:
+    container_name: webapii
+    image: ${DOCKER_REGISTRY-}webapii
+    build:
+      context: ./BusinessService
+      dockerfile: WebAPI\Dockerfile
+    ports:
+      - 8080:80
+    depends_on: 
+      - spabookingdb
+    networks:
+      - spabookingapis

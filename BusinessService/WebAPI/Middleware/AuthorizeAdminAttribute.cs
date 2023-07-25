@@ -34,7 +34,8 @@ namespace WebAPI.Middleware
             }
 
             //Get User
-            var userDetail = _accountService.GetAccountsByEmail(user.Email);
+            //var userDetail = _accountService.GetAccountsByEmail(user.Email);
+            string userDetail = null;
 
             if (userDetail == null)
             {

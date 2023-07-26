@@ -3,8 +3,10 @@ using Application.DTOs.Response;
 using Application.Services.ReviewService;
 using Application.Services.StaffService;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace WebAPI.Controllers
 {
@@ -20,7 +22,6 @@ namespace WebAPI.Controllers
             _reviewService = reviewService;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<ReviewResponseDTO>>> GetReviews()
         {
             var reviews = await _reviewService.GetReviews();
@@ -28,7 +29,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ReviewResponseDTO>> GetReview(long id)
         {
             var review = await _reviewService.GetReview(id);
@@ -36,6 +36,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "USER")]
         public async Task<ActionResult> CreateReview(ReviewRequestDTO review)
         {
             await _reviewService.Add(review);
@@ -43,6 +44,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "USER")]
         public async Task<ActionResult> UpdateReview(long id, ReviewRequestDTO review)
         {
             await _reviewService.Update(id, review);

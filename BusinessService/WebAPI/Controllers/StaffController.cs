@@ -23,7 +23,6 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<StaffResponseDTO>>> GetStaffs()
         {
             var staffs = await _staffService.GetStaffs();
@@ -31,7 +30,6 @@ namespace WebAPI.Controllers
         }
         
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<StaffResponseDTO>> GetStaff(long id)
         {
             var staff = await _staffService.GetStaff(id);

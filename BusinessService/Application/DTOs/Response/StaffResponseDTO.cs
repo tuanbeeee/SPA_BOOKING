@@ -15,6 +15,6 @@ namespace Application.DTOs.Response
         public string staffEmail { get; set; }
         public string staffGender { get; set; }
         public Spa Spa { get; set; }
-        public string AccountId { get; set; }
+        public AccountResponseDTO Account { get; set; }
     }
 }

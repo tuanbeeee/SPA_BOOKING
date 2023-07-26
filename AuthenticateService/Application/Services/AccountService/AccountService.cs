@@ -1,11 +1,14 @@
-﻿using Application.DTOs.Response;
+﻿using Application.DTOs.Request;
+using Application.DTOs.Response;
 using Application.Exceptions;
 using Application.Helpers;
 using AutoMapper;
 using Domain.Models;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,12 +35,12 @@ namespace Application.Services.AccountService
         }
         public async Task<AccountResponseDTO>? GetAccountByEmail(string email)
         {
-            var account =  _accountRepository.GetAccountByEmail(email);
+            var account = _accountRepository.GetAccountByEmail(email);
             if (account == null)
             {
                 throw new NotFoundException("Account not found!");
             }
-            return  _mapper.Map<AccountResponseDTO>(account);
+            return _mapper.Map<AccountResponseDTO>(account);
         }
 
         public async Task<AccountResponseDTO>? GetAccountById(string id)
@@ -71,14 +74,29 @@ namespace Application.Services.AccountService
                 UserName = model.Email,
                 Email = model.Email,
                 Role = model.Role,
+                Status=1    
             };
             if (model.ConfirmPassword != model.Password)
             {
                 throw new BadRequestException("Confirm password not match!");
             }
-            return await _userManager.CreateAsync(user, model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            //if (result.Succeeded)
+            //{
+            //    var customer = new CustomerRequestDTO { AccountId = user.Id, CustomerEmail = model.Email };
+            //    string endpoint = $"http://192.168.2.8:4021/api/Customer";
+            //    using (var httpClient = new HttpClient())
+            //    {
+            //        var requestContent = new StringContent(JsonConvert.SerializeObject(customer), System.Text.Encoding.UTF8, "application/json");
+
+            //        using (HttpResponseMessage response = await httpClient.PostAsync(endpoint, requestContent))
+            //        {
+
+            //        }
+            //    }
+            //}
+            return result;
         }
-
-
     }
 }

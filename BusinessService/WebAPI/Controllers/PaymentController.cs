@@ -15,14 +15,12 @@ namespace WebAPI.Controllers
             _paymentService = paymentService;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<PaymentResponseDTO>>> GetPayments()
         {
             var payments = await _paymentService.GetAllPayments();
             return Ok(payments);
         }
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<PaymentResponseDTO>> GetPayment(long id)
         {
             var payment = await _paymentService.GetPayment(id);

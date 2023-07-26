@@ -18,14 +18,12 @@ namespace WebAPI.Controllers
             _customerService = customerService;
         }
         [HttpGet]
-        [Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<CustomerResponseDTO>>> GetCustomers()
         {
             var customers= await _customerService.GetAllCustomers();   
             return Ok(customers);
         }
         [HttpGet("{id}")]
-        [Authorize(Roles = "Customer")]
         public async Task<ActionResult<CustomerResponseDTO>> GetCustomer(long id)
         {
             var customer = await _customerService.GetCustomer(id);          

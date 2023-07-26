@@ -1,8 +1,6 @@
 using Domain.Models;
-using Domain.UnitOfWork;
 using Infrastructure.DBContext;
 using Infrastructure.Repositories;
-using Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +36,14 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 builder.Services.AddIdentity<Account, IdentityRole>()
     .AddEntityFrameworkStores<SpaBookingDBContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+{
+    builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+}));
 
 builder.Services.AddScoped<IJwtToken, JwtToken>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -92,5 +98,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
 
 app.Run();

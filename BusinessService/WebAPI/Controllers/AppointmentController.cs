@@ -13,7 +13,6 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [TypeFilter(typeof(AuthorizeAdminAttribute))]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;
@@ -25,7 +24,7 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<ICollection<AppointmentResponseDTO>>> GetAppointments()
         {
             var appointments = await _appointmentService.GetAppointments();
@@ -33,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<AppointmentResponseDTO>> GetAppointment(long id)
         {
             var appointment = await _appointmentService.GetAppointment(id);
@@ -41,18 +40,21 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "USER")]
         public async Task<ActionResult> CreateAppointment(AppointmentRequestDTO appointment)
         {
             await _appointmentService.Add(appointment);
             return NoContent();
         }
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> UpdateAppointment(long id, AppointmentRequestDTO appointment)
         {
             await _appointmentService.Update(id, appointment);
             return NoContent();
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> DeleteAppointment(long id)
         {
 

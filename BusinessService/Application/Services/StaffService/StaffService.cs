@@ -5,6 +5,8 @@ using AutoMapper;
 using Domain.Models;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,7 @@ namespace Application.Services.StaffService
                 throw new BadRequestException("Staff Information is invalid!");
             }
             var staff =  _mapper.Map<Staff>(staffRequest);
-            //staff.Account = _accountRepository.GetAccountsByID(staffRequest.accountId);
+            staff.AccountId = staffRequest.accountId;
             staff.Spa = await _spaRepository.GetAsync(staffRequest.spaId);
             await _staffRepository.AddAsync(staff);
             if (await _staffRepository.SaveChangeAsync() is false)
@@ -64,7 +66,23 @@ namespace Application.Services.StaffService
             {
                 throw new NotFoundException("Staff not found!");
             }
-            return _mapper.Map<StaffResponseDTO>(staff);
+            var staffResponse= _mapper.Map<StaffResponseDTO>(staff);
+            var account=new AccountResponseDTO();
+            string endpoint = $"http://localhost:7208/api/Account/id/{staff.AccountId})";
+            using (var httpClient = new HttpClient())
+            {              
+                using (HttpResponseMessage response = await httpClient.GetAsync(endpoint))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    account = JsonConvert.DeserializeObject<AccountResponseDTO>(apiResponse);
+                }
+            }
+            if (account == null)
+            {
+                throw new NotFoundException("Account not found!");
+            }
+            staffResponse.Account = account;
+            return _mapper.Map<StaffResponseDTO>(staffResponse);
         }
 
         public async Task<ICollection<StaffResponseDTO>> GetStaffs()

@@ -3,8 +3,10 @@ using Application.DTOs.Response;
 using Application.Services.SpaService;
 using Application.Services.StaffService;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace WebAPI.Controllers
 {
@@ -21,7 +23,6 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<SpaResponseDTO>>> GetSpas()
         {
             var spa = await _spaService.GetSpas();
@@ -29,7 +30,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<SpaResponseDTO>> GetSpa(long id)
         {
             var spa = await _spaService.GetSpa(id);
@@ -37,6 +37,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> CreateSpa(SpaRequestDTO spa)
         {
             await _spaService.Add(spa);
@@ -44,6 +45,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult> UpdateSpa(long id, SpaRequestDTO spa)
         {
             await _spaService.Update(id, spa);
@@ -51,6 +53,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> DeleteSpa(long id)
         {
 

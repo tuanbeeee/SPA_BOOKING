@@ -15,14 +15,12 @@ namespace WebAPI.Controllers
             _appointmentDetailService = appointmentDetailService;
         }
         [HttpGet]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<AppointmentDetailResponseDTO>>> GetAppointmentDetails()
         {
             var appointmentDetails = await _appointmentDetailService.GetAllAppointmentDetails();
             return Ok(appointmentDetails);
         }
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<AppointmentDetailResponseDTO>> GetAppointmentDetail(long id)
         {
             var appointmentDetail = await _appointmentDetailService.GetAppointmentDetail(id);

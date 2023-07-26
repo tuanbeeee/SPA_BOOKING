@@ -39,7 +39,6 @@ builder.Services.AddIdentity<Account, IdentityRole>()
     .AddEntityFrameworkStores<SpaBookingDBContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IJwtToken, JwtToken>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -1,5 +1,7 @@
 ﻿
+using Application.DTOs.Response;
 using AutoMapper;
+using Domain.Models;
 
 namespace Application.Mapper
 {
@@ -7,7 +9,7 @@ namespace Application.Mapper
     {
         public MappingProfile() 
         {
-            
+            CreateMap<Account, AccountResponseDTO>();
         }
     }
 }

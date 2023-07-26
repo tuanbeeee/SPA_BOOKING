@@ -13,7 +13,5 @@ namespace Domain.Models
     {
         public int Status { get; set; }
         public string Role { get; set; }
-        public Staff? Staff { get; set; }
-        public Customer? Customer { get; set; }
     }
 }

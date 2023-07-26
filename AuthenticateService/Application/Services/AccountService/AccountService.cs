@@ -30,9 +30,19 @@ namespace Application.Services.AccountService
             _userManager = userManager;
             _jwtToken = jwtToken;
         }
-        public async Task<AccountResponseDTO>? GetAccountsByEmail(string email)
+        public async Task<AccountResponseDTO>? GetAccountByEmail(string email)
         {
-            var account =  _accountRepository.GetAccountsByEmail(email);
+            var account =  _accountRepository.GetAccountByEmail(email);
+            if (account == null)
+            {
+                throw new NotFoundException("Account not found!");
+            }
+            return  _mapper.Map<AccountResponseDTO>(account);
+        }
+
+        public async Task<AccountResponseDTO>? GetAccountById(string id)
+        {
+            var account = _accountRepository.GetAccountByID(id);
             if (account == null)
             {
                 throw new NotFoundException("Account not found!");

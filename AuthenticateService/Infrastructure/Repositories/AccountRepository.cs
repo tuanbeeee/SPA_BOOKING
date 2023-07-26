@@ -20,13 +20,13 @@ namespace Infrastructure.Repositories
             this._context = context;
         }
 
-        public Account? GetAccountsByEmail(string email)
+        public Account? GetAccountByEmail(string email)
         {
             var account = _context.Account.SingleOrDefault(x => x.Email == email);
             return account;
         }
 
-        public Account? GetAccountsByID(string id)
+        public Account? GetAccountByID(string id)
         {
             var account = _context.Account.SingleOrDefault(x => x.Id == id);
             return account;

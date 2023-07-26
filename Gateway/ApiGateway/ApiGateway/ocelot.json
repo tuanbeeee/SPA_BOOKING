@@ -1,0 +1,43 @@
+﻿{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:8080"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/authenticate/sign-in",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Authenticate/SignIn",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4020
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/authenticate/sign-up",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Authenticate/SignUp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4020
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/account/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/account/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 4220
+        }
+      ]
+    }
+  ]
+}

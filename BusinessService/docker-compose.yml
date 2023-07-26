@@ -14,9 +14,30 @@ services:
       - MSSQL_SA_PASSWORD=ABC@123456
     networks:
       - spabookingapis
+  
+  seq-input-gelf:
+    image: datalust/seq-input-gelf:latest
+    depends_on:
+      - seq
+    ports:
+      - "12201:12201/udp"
+    environment:
+      SEQ_ADDRESS: "http://seq:5341"
+    restart: unless-stopped
+
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      ACCEPT_EULA: "Y"
+    restart: unless-stopped
+    volumes:
+      - ./seq-data:/data
+
   business-webapi:
     container_name: business-container
-    image: ${DOCKER_REGISTRY-}webapi
+    image: ${DOCKER_REGISTRY-}webapi:latest
     build:
       context: .
       dockerfile: WebAPI\Dockerfile
@@ -26,13 +47,8 @@ services:
       - spabooking-business-db
     networks:
       - spabookingapis
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://0.0.0.0:12201
   
-  seq:
-    image: datalust/seq:latest
-    ports: 
-       - "5341:80"
-    environment:
-       ACCEPT_EULA: Y
-    restart: unless-stopped
-    volumes:
-        - ./seq-data:/data

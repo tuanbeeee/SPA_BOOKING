@@ -22,6 +22,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+builder.Host.UseSerilog((context, loggerConfig) => {
+    loggerConfig
+    .ReadFrom.Configuration(context.Configuration)
+    .WriteTo.Console()
+    .Enrich.WithMachineName()
+    .Enrich.FromLogContext()
+    .Enrich.WithEnvironmentName()
+    .WriteTo.Seq("http://localhost:5341");
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 

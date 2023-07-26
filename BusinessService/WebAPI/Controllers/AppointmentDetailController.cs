@@ -10,14 +10,17 @@ namespace WebAPI.Controllers
     public class AppointmentDetailController:Controller
     {
         private readonly IAppointmentDetailService _appointmentDetailService;
-        public AppointmentDetailController(IAppointmentDetailService appointmentDetailService)
+        private readonly ILogger<AppointmentDetailController> _logger;
+        public AppointmentDetailController(IAppointmentDetailService appointmentDetailService, ILogger<AppointmentDetailController> logger)
         {
             _appointmentDetailService = appointmentDetailService;
+            _logger = logger;
         }
         [HttpGet]
         //[Authorize(Roles = "Customer")]
         public async Task<ActionResult<ICollection<AppointmentDetailResponseDTO>>> GetAppointmentDetails()
         {
+            _logger.LogInformation("This is a sample log message.");
             var appointmentDetails = await _appointmentDetailService.GetAllAppointmentDetails();
             return Ok(appointmentDetails);
         }

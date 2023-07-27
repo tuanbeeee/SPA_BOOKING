@@ -1,4 +1,4 @@
-﻿using Domain.Models.Emun;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +16,7 @@ namespace Domain.Models
         public DateTime dateCreated { get; set;}
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
-        public AppointmentStatus status { get; set; }
+        public string? status { get; set; }
         public string note { get; set; }
         public Customer? Customer { get; set; }
         public Staff? Staff { get; set; }

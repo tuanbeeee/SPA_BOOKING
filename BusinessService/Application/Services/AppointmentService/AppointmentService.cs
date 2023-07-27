@@ -35,6 +35,8 @@ namespace Application.Services.AppointmentService
                 throw new BadRequestException("Appointment Information is invalid!");
             }
             var appointment = _mapper.Map<Appointment>(requestAppointment);
+            appointment.dateCreated = DateTime.Now;
+            appointment.status = "Pending";
             appointment.Customer = await _customerRepository.GetAsync(requestAppointment.customerID);
             appointment.Staff = await _staffRepository.GetAsync(requestAppointment.staffID);
             await _appointmentRepository.AddAsync(appointment);

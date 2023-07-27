@@ -19,10 +19,22 @@ using Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Host.UseSerilog((context, loggerConfig) => {
+    loggerConfig
+    .ReadFrom.Configuration(context.Configuration)
+    .WriteTo.Console()
+    .Enrich.WithMachineName()
+    .Enrich.FromLogContext()
+    .Enrich.WithEnvironmentName()
+    .WriteTo.Seq("http://localhost:5341");
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,6 +43,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<SpaBookingDBContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Host.UseSerilog((context, lc) => lc.WriteTo.Console().WriteTo.Seq("http://localhost:5341"));
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -45,7 +59,6 @@ builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
 }));
 
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

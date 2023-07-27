@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize]
         public async Task<ActionResult<AppointmentResponseDTO>> GetAppointment(long id)
         {
             var appointment = await _appointmentService.GetAppointment(id);
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "USER")]
+        [Authorize]
         public async Task<ActionResult> CreateAppointment(AppointmentRequestDTO appointment)
         {
             await _appointmentService.Add(appointment);

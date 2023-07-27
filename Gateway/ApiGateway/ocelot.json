@@ -1,0 +1,303 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:7208"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/authenticate/sign-up",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Authenticate/SignUp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4020
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/authenticate/sign-in",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Authenticate/SignIn",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4020
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/account/id/{id}",
+      "UpstreamHttpMethod": [ "get" ],
+      "DownstreamPathTemplate": "/api/Account/id/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4020
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/account/email/{email}",
+      "UpstreamHttpMethod": [ "get" ],
+      "DownstreamPathTemplate": "/api/Account/email/{email}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4020
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+
+    // BusinessService
+    {
+      "UpstreamPathTemplate": "/gateway/appointment",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Appointment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/appointment/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Appointment/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/appointment-detail",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/AppointmentDetail",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/appointment-detail/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/AppointmentDetail/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/customer",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Customer",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/customer/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/customer/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/discount",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Discount",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/discount/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Discount/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/payment",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Payment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/payment/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Payment/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/review",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Review",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/review/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Review/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/service",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Service",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/service/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Service/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/spa",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Spa",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/spa/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Spa/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    //
+    {
+      "UpstreamPathTemplate": "/gateway/staff",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "DownstreamPathTemplate": "/api/Staff",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/staff/{id}",
+      "UpstreamHttpMethod": [ "get", "put", "delete" ],
+      "DownstreamPathTemplate": "/api/Staff/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.86.7.39",
+          "Port": 4021
+        }
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ]
+}
